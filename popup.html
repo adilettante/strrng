@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://developer.chrome.com/extensions/examples/api/browserAction/set_page_color/popup.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>HTML Select</title>
+    <link rel="stylesheet" href="css/popup.css">    
+</head>
+<body>
+    <div id="main-menu" class="main-menu">
+        <div class="menu home" id="home">
+            View Home
+        </div>
+        <div class="search" id="search"> 
+            <div class="search-wrapper">
+                <div class="search-box">            
+                    <input type="text" class="search-input" id="search_input">
+                    <!--<span class="close-span" id="clean_search"> X </span>-->
+                    <img src="images/search.svg" width="20">
+                </div>   
+                <div class="clean-div" id="clean_search"> Clean </span>
+            </div>            
+        </div>
+        <div class="content" id="content">
+            
+        </div>    
+        <div class="menu footer" id="clear" title="clear all your strings added to the menu list">        
+            Clear
+        </div>
+        <div class="menu footer" id="setting">        
+            Settings
+        </div>
+        
+        <div class="sub-footer" id="sub_setting">
+            <div class="sub-footer-full-item" style="cursor: initial;">
+                <div id="toggle_div">
+                     <span id="toggle_on" class="toggle-span" > ON</span>/
+                     <span id="toggle_off" class="toggle-span" >OFF </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALT+SHIFT+1</h2>
+                </div>
+                <div class="main-doantion">
+                    <a href="javascript:;" id="donation"> Support new features</a>
+                </div>
+            </div>
+            
+            <div class="sub-footer-item">
+                <div id="show_export_submenu" title="download your strings.">
+                    <img src="images/down.png" class="img-arrow">
+                </div>
+                <div id="export-submenu" class="export-submenu">
+                <form id="export_submenu_form">
+                    <div class="submenu-row">
+                        <div class="submenu-row-header"> Filter </div>
+                        <div style="font-size: 16px;">
+                            <input type="radio" class="custom-control-input" id="export_filter2" value="1" name="export_filter">
+                            <label class="custom-control-label" for="export_filter2" title="select menu to download all strings menu added">Menu list</label>
+
+                            <input type="radio" class="custom-control-input" id="export_filter3" value="2" name="export_filter">
+                            <label class="custom-control-label" for="export_filter3">All</label>
+                        </div>
+                    </div>
+                    <div class="submenu-row">
+                        <div class="submenu-row-header"> Type</div>
+                        <div style="font-size: 16px;">
+                            <input type="radio" class="custom-control-input" title="download your string database to save/upload in other browsers" id="export_type1" value="0" checked name="export_type">
+                            <label class="custom-control-label" for="export_type1" title="download your string database to save/upload in other browsers">TXT</label>
+
+
+                            <input type="radio" class="custom-control-input" id="export_type2" value="1" name="export_type">
+                            <label class="custom-control-label" for="export_type2">CSV</label>
+                        </div>
+                    </div>
+                    
+                    <div class="submenu-row" id="expert">
+                        Download
+                    </div>
+                </form>
+
+                </div>
+            </div>
+            <div class="sub-footer-item" id="import" title="upload string text data from a previous download (.txt file only)">
+                <div>
+                    <img src="images/up.png" class="img-arrow">
+                </div>
+            </div>
+        </div>   
+        
+
+        <div class="blockOverlay" id="blockOverlay"  style="display: none;"></div>
+        <div class="blockMsg" id="blockMsg" style="display: none;"><h1>Importing, Please wait...</h1></div>
+    </div>
+    <div class="donation-menu" id="donation-menu" style="display: none;"> 
+        <img src="images/client.png" width="70px" height="70px" style="border-radius: 35px;" />
+        <hr>
+        <div class="custom-control custom-radio" style="margin-top: 10px">
+            <input type="radio" class="custom-control-input" id="donate5" name="donateAmount" value="5">
+            <label class="custom-control-label" for="donate5">Donate £5</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="donate10" name="donateAmount" value="10">
+            <label class="custom-control-label" for="donate10">Donate £10</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="donate18" name="donateAmount" value="18" checked>
+            <label class="custom-control-label" for="donate15">Donate £18</label>
+        </div>
+        <hr>
+
+        <button class="btn btn-outline-warning pay-btn" id="pay">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            Confirm
+        </button>
+    </div>
+    <script src="js/base64.js"></script>
+    <script src="js/indexeddb.js"></script>
+    <script src="js/popup.js"></script>
+</body>
+</html>
